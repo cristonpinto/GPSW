@@ -1,7 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
-import DashboardContent from '../components/DashboardContent';
+import DashboardContent from '../components/DashboardRv';
 import './Dashboard.css';
 
 const Dashboard = () => {
@@ -11,7 +11,7 @@ const Dashboard = () => {
     <div className="dashboard">
       
       <div className="dashboard-main">
-        <Sidebar />
+        
         <DashboardContent />
       </div>
     </div>
