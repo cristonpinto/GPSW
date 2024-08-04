@@ -16,6 +16,7 @@ const DashboardContent = () => {
     { title: "Accidents", route: "/accidents", notificationCount: 2, icon: faCarCrash },
     { title: "Certificate Changes", route: "/certificate-changes", notificationCount: 1, icon: faCertificate },
     { title: "Reports", route: "/reports", notificationCount: 3, icon: faFileAlt },
+    
   ];
 
   return (
