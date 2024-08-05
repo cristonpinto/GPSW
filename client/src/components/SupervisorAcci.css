@@ -2,6 +2,8 @@
   flex-grow: 1;
   padding: 20px;
   background-color: #f9f9f9;
+  animation: slideIn 0.5s ease-in-out;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .add-accident-button {
@@ -97,4 +99,22 @@ h2 {
 
 .status-dot.line-manager {
   background-color: rgb(248, 5, 5);
+}
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
