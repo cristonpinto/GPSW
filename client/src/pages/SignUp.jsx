@@ -46,7 +46,7 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-
+  
     if (
       !formData.username || !formData.email || !formData.password || !formData.cpassword ||
       !formData.nic || !formData.fullname || !formData.position || !formData.phone ||
@@ -56,18 +56,25 @@ export default function SignUp() {
       setLoading(false);
       return;
     }
-
+  
     if (formData.password !== formData.cpassword) {
       setError('Passwords do not match');
       setLoading(false);
       return;
     }
-
+  
     try {
       await axios.post('/api/auth/signup', formData);
       setLoading(false);
       setError('');
       setShowSuccess(true);
+  
+      // Send notification data
+      await axios.post('/api/notifications', {
+        fullname: formData.fullname,
+        position: formData.position
+      });
+  
       navigate('/sign-in');
     } catch (error) {
       setLoading(false);
