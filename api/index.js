@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import complaintRouter from './routes/complaint.route.js'; // Import complaint router
+import notificationRouter from './routes/notification.route.js'; // Import notification router
+
 
 dotenv.config(); // Load environment variables from .env file
 

@@ -9,6 +9,7 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Accidents from './pages/Accidents';
 import Complaints from './pages/Complaints';
+import NotificationPage from './pages/NotificationPage'; // Import NotificationPage
 import Loader from './components/Loader'; // Ensure you have this component
 
 // Main App component
@@ -52,6 +53,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />} /> {/* Dashboard route */}
             <Route path="/accidents" element={<Accidents />} /> {/* Accidents route */}
             <Route path="/complaints" element={<Complaints />} /> {/* Complaints route */}
+            <Route path="/notifications" element={<NotificationPage />} /> {/* Notifications route */}
           </Routes>
         </>
       )}
