@@ -38,7 +38,7 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api', complaintRouter); // Register complaint router
-
+app.use('/api', notificationRouter)
 // Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

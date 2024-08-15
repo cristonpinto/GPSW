@@ -1,37 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './NotificationComponent.css';
-import { useLocation } from 'react-router-dom'; // Assuming you're using react-router for location tracking
+import { useLocation } from 'react-router-dom';
 
 const NotificationComponent = () => {
   const [notifications, setNotifications] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // State to track errors
-  const location = useLocation(); // Hook to get the current location
+  const [error, setError] = useState(null);
+  const location = useLocation();
 
   useEffect(() => {
-    // Function to start loading
     const handleStartLoading = () => {
       setLoading(true);
-      setError(null); // Reset error state when loading starts
+      setError(null);
     };
 
-    // Function to stop loading
     const handleStopLoading = () => {
       setLoading(false);
     };
 
-    // Start loading when location changes
     handleStartLoading();
+    const loadingTimeout = setTimeout(handleStopLoading, 1190);
 
-    // Simulate loading duration, you can adjust this as needed
-    const loadingTimeout = setTimeout(handleStopLoading, 1190); // 1190ms duration
-
-    // Fetch notifications after loading
     const fetchNotifications = async () => {
       try {
         const response = await axios.get('/api/notifications');
-        setNotifications(response.data);
+        const sortedNotifications = response.data.sort(
+          (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+        );
+        setNotifications(sortedNotifications);
       } catch (error) {
         console.error('Error fetching notifications:', error);
         setError('Failed to load notifications. Please try again later.');
@@ -40,9 +37,8 @@ const NotificationComponent = () => {
 
     fetchNotifications();
 
-    // Cleanup the timeout when the component unmounts or location changes
     return () => clearTimeout(loadingTimeout);
-  }, [location]); // Dependency array ensures this effect runs on location change
+  }, [location]);
 
   return (
     <div className="notifications-container">
@@ -99,8 +95,8 @@ const NotificationComponent = () => {
                 </div>
                 <div className="rightnotifi">
                   <div className="text-wrapnotifi">
-                    <h2>{notification.fullname}</h2>
-                    <p>{notification.position}</p>
+                    <h2>{notification.title}</h2> {/* Display title */}
+                    <p>{notification.description}</p> {/* Display description */}
                     <p><strong>Unique ID:</strong> {notification.uniqueId}</p>
                     <p><strong>Created At:</strong> {new Date(notification.createdAt).toLocaleString()}</p>
                   </div>
