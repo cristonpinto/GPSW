@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { FaBell } from 'react-icons/fa';
 import styled from 'styled-components';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
+import axios from 'axios'; // Import axios for making API requests
+import logo from '../assets/logo.png'; // Import the logo image
 
 // Styled components for the header
 const HeaderWrapper = styled.header`
@@ -9,16 +11,25 @@ const HeaderWrapper = styled.header`
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
-  background: linear-gradient(90deg, #6ab04c, #3b945e);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: white; /* Set background color to white */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 `;
 
 const Title = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px; /* Space between logo and text */
+
   h1 {
     margin: 0;
     font-size: 24px;
-    color: #ffffff;
+    color: #3b945e; /* Adjusted text color */
     font-weight: bold;
+  }
+
+  img {
+    height: 40px; /* Adjust the height as needed */
+    width: auto;
   }
 `;
 
@@ -30,7 +41,7 @@ const RightSection = styled.div`
 
 const Button = styled(Link)`
   --primary-color: background: linear-gradient(90deg, #6ab04c, #3b945e);
-  --secondary-color: #fff;
+  --secondary-color: #3b945e; /* Set text color to green */
   background: linear-gradient(90deg, #6ab04c, #3b945e);
   --arrow-width: 10px;
   --arrow-stroke: 2px;
@@ -93,7 +104,7 @@ const NotificationIcon = styled(Link)`
   position: relative;
   display: flex;
   align-items: center;
-  color: white;
+  color: #3b945e; /* Adjusted icon color */
 
   .notification-count {
     position: absolute;
@@ -108,20 +119,45 @@ const NotificationIcon = styled(Link)`
   }
 `;
 
+const WelcomeCard = styled.div`
+  background-color: #6ab04c;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 20px;
+  font-weight: bold;
+`;
+
 const Header = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const [username, setUsername] = useState(null);
-  const [notificationCount, setNotificationCount] = useState(3); // Example notification count
+  const [position, setPosition] = useState(null);
+  const [notificationCount, setNotificationCount] = useState(0);
 
   useEffect(() => {
     const storedUsername = localStorage.getItem('username');
-    if (storedUsername) {
-      setUsername(storedUsername);
-    } else if (location.pathname === '/dashboard') {
+    const storedPosition = localStorage.getItem('position');
+    if (!storedUsername && (location.pathname === '/dashboard' || location.pathname === '/complaints')) {
       navigate('/sign-in');
+    } else {
+      setUsername(storedUsername);
+      setPosition(storedPosition);
     }
   }, [location.pathname, navigate]);
+
+  useEffect(() => {
+    // Fetch notifications from the backend
+    const fetchNotifications = async () => {
+      try {
+        const response = await axios.get('/api/notifications');
+        setNotificationCount(response.data.length); // Set the notification count
+      } catch (error) {
+        console.error('Error fetching notifications', error);
+      }
+    };
+
+    fetchNotifications();
+  }, []);
 
   const handleSignInClick = () => {
     navigate('/sign-in');
@@ -129,21 +165,24 @@ const Header = () => {
 
   const handleLogout = () => {
     localStorage.removeItem('username');
+    localStorage.removeItem('position');
     setUsername(null);
+    setPosition(null);
     navigate('/sign-in');
   };
 
   return (
     <HeaderWrapper>
-      <Link to="/">
+      <Link to="/dashboard">
         <Title>
+          <img src={logo} alt="Logo" /> {/* Add the logo image here */}
           <h1>BIO FOODS</h1>
         </Title>
       </Link>
       <RightSection>
         {username ? (
           <>
-            <div style={{ color: 'white' }}>Welcome, {username}!</div>
+            <WelcomeCard>Welcome, {username} ({position})!</WelcomeCard>
             <NotificationIcon to="/notifications">
               <FaBell style={{ fontSize: '24px' }} />
               {notificationCount > 0 && (
@@ -165,9 +204,7 @@ const Header = () => {
             </Button>
             <Button as="button" onClick={handleSignInClick}>
               Sign In
-              <div className="arrow-wrapper">
-                <div className="arrow"></div>
-              </div>
+              <div className="arrow-wrapper"></div>
             </Button>
             <Button to="/contact">
               Contact Us

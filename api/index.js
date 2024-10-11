@@ -5,7 +5,12 @@ import userRouter from './routes/user.route.js';
 import authRouter from './routes/auth.route.js';
 import complaintRouter from './routes/complaint.route.js'; // Import complaint router
 import notificationRouter from './routes/notification.route.js'; // Import notification router
+<<<<<<< HEAD
 
+=======
+import accidentRouter from './routes/accident.route.js'; // Import accident router
+import certificateRouter from './routes/certificateChange.route.js';
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 
 dotenv.config(); // Load environment variables from .env file
 
@@ -35,10 +40,18 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     process.exit(1);
   });
 
+// Register routers
 app.use('/api/user', userRouter);
 app.use('/api/auth', authRouter);
 app.use('/api', complaintRouter); // Register complaint router
+<<<<<<< HEAD
 app.use('/api', notificationRouter)
+=======
+app.use('/api', notificationRouter); // Register notification router
+app.use('/api', accidentRouter); // Register accident router
+app.use('/api', certificateRouter);
+
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 // Error handling middleware
 app.use((err, req, res, next) => {
   const statusCode = err.statusCode || 500;

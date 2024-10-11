@@ -1,4 +1,4 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
 const complaintSchema = new mongoose.Schema({
     name: String,
@@ -16,7 +16,8 @@ const complaintSchema = new mongoose.Schema({
     storageInfo: String,
     healthEffects: String,
     desiredResolution: String,
-    additionalComments: String
+    additionalComments: String,
+    reviewerNote: String  // New field added
 }, { timestamps: true });
 
 const Complaint = mongoose.model('Complaint', complaintSchema);

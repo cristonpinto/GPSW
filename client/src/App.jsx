@@ -9,42 +9,48 @@ import Header from './components/Header';
 import Dashboard from './pages/Dashboard';
 import Accidents from './pages/Accidents';
 import Complaints from './pages/Complaints';
+<<<<<<< HEAD
 import NotificationPage from './pages/NotificationPage'; // Import NotificationPage
 import Loader from './components/Loader'; // Ensure you have this component
+=======
+import Loader from './components/Loader';
+import NotificationPage from './pages/NotificationPage';
+import AddAccident from './pages/Addaccident';
+import Accidentshow from './pages/Accidentshow';
+import Settings from './pages/Settings';
+import CertificateChanges from './pages/CertificateChanges';
+import AnnouncementPage from './pages/AnnouncementPage';
+// import Report from './pages/Report'; // Import the Report page
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 
-// Main App component
-function App() {
+const AppContent = () => {
   const [loading, setLoading] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
-    // Function to start loading
     const handleStartLoading = () => {
       setLoading(true);
     };
 
-    // Function to stop loading
     const handleStopLoading = () => {
       setLoading(false);
     };
 
-    // Start loading when location changes
     handleStartLoading();
 
-    // Simulate loading duration, you can adjust this as needed
     const loadingTimeout = setTimeout(handleStopLoading, 1190);
 
-    // Cleanup the timeout when component unmounts or location changes
     return () => clearTimeout(loadingTimeout);
   }, [location]);
 
   return (
     <>
-      {loading && <Loader />} {/* Render Loader component when loading */}
+      {loading && <Loader />}
       {!loading && (
         <>
-          <Header /> {/* Render Header component */}
+          <Header />
           <Routes>
+<<<<<<< HEAD
             <Route path="/" element={<Home />} /> {/* Home route */}
             <Route path="/sign-in" element={<SignIn />} /> {/* Sign-In route */}
             <Route path="/sign-up" element={<SignUp />} /> {/* Sign-Up route */}
@@ -54,20 +60,28 @@ function App() {
             <Route path="/accidents" element={<Accidents />} /> {/* Accidents route */}
             <Route path="/complaints" element={<Complaints />} /> {/* Complaints route */}
             <Route path="/notifications" element={<NotificationPage />} /> {/* Notifications route */}
+=======
+            <Route path="/" element={<Home />} />
+            <Route path="/sign-in" element={<SignIn />} />
+            <Route path="/sign-up" element={<SignUp />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/accidents" element={<Accidents />} />
+            <Route path="/complaints" element={<Complaints />} />
+            <Route path="/notifications" element={<NotificationPage />} />
+            <Route path="/add-accident" element={<AddAccident />} />
+            <Route path="/accident-show/:id" element={<Accidentshow />} />
+            <Route path="/settings" element={<Settings />} />
+            <Route path="/certificate-changes" element={<CertificateChanges />} />
+            <Route path="/announcements" element={<AnnouncementPage />} />
+            {/* <Route path="/report" element={<Report />} /> Report route */}
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
           </Routes>
         </>
       )}
     </>
   );
-}
-
-// AppWrapper component to provide BrowserRouter
-const AppWrapper = () => {
-  return (
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-  );
 };
 
-export default AppWrapper;
+export default AppContent;

@@ -2,6 +2,10 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './NotificationComponent.css';
 import { useLocation } from 'react-router-dom';
+<<<<<<< HEAD
+=======
+import { FaUserPlus, FaSync, FaBullhorn } from 'react-icons/fa'; // Updated import
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 
 const NotificationComponent = () => {
   const [notifications, setNotifications] = useState([]);
@@ -40,11 +44,48 @@ const NotificationComponent = () => {
     return () => clearTimeout(loadingTimeout);
   }, [location]);
 
+<<<<<<< HEAD
+=======
+  const formatDescription = (text) => {
+    const urlRegex = /(https?:\/\/[^\s]+)/g;
+    return text
+      .split('\n')
+      .map((line, index) => (
+        <span key={index}>
+          {line.split(urlRegex).map((part, i) =>
+            urlRegex.test(part) ? (
+              <a key={i} href={part} target="_blank" rel="noopener noreferrer">
+                {part}
+              </a>
+            ) : (
+              part
+            )
+          )}
+          <br />
+        </span>
+      ));
+  };
+
+  const getIcon = (type) => {
+    switch (type) {
+      case 'Signup Notification':
+        return <FaUserPlus className="icon" />;
+      case 'system':
+        return <FaSync className="icon" />; // Updated icon
+      case 'announcement':
+        return <FaBullhorn className="icon" />;
+      default:
+        return null;
+    }
+  };
+
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
   return (
     <div className="notifications-container">
       <h1 className='g11'>Notifications List</h1>
       {loading ? (
         <div className="dot-spinner">
+<<<<<<< HEAD
           <div className="dot-spinner__dot"></div>
           <div className="dot-spinner__dot"></div>
           <div className="dot-spinner__dot"></div>
@@ -53,6 +94,11 @@ const NotificationComponent = () => {
           <div className="dot-spinner__dot"></div>
           <div className="dot-spinner__dot"></div>
           <div className="dot-spinner__dot"></div>
+=======
+          {[...Array(8)].map((_, i) => (
+            <div key={i} className="dot-spinner__dot"></div>
+          ))}
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
         </div>
       ) : error ? (
         <div className="error">
@@ -91,6 +137,7 @@ const NotificationComponent = () => {
             <li key={notification._id} className="cardnotifi">
               <div className="containernotifi">
                 <div className="leftnotifi">
+<<<<<<< HEAD
                   <div className="status-indnotifi"></div>
                 </div>
                 <div className="rightnotifi">
@@ -102,6 +149,27 @@ const NotificationComponent = () => {
                   </div>
                   <div className="button-wrapnotifi">
                     <button className="primary-ctanotifi">View file</button>
+=======
+                  <div className="status-indnotifi">{getIcon(notification.type)}</div>
+                </div>
+                <div className="rightnotifi">
+                  <div className="text-wrapnotifi">
+                    <h2 className="title">{notification.title}</h2>
+                    <hr className="divider" />
+                    <p>{formatDescription(notification.description)}</p>
+                    <p className="time">
+                      {new Date(notification.createdAt).toLocaleString('en-US', {
+                        weekday: 'long',
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      })}
+                    </p>
+                  </div>
+                  <div className="button-wrapnotifi">
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
                     <button className="secondary-ctanotifi">Mark as read</button>
                   </div>
                 </div>
@@ -114,4 +182,8 @@ const NotificationComponent = () => {
   );
 };
 
+<<<<<<< HEAD
 export default NotificationComponent;
+=======
+export default NotificationComponent;
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac

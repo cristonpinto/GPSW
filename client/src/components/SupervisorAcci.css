@@ -23,12 +23,19 @@ h2 {
   margin-bottom: 20px;
   color: #0c0b0b;
   font-weight: bold;
+<<<<<<< HEAD
   
+=======
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 }
 
 .button-group {
   display: flex;
+<<<<<<< HEAD
   justify-content: center;
+=======
+  justify-content: space-between;
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
   margin-bottom: 20px;
 }
 
@@ -51,6 +58,29 @@ h2 {
   background-color: #3b945e;
 }
 
+<<<<<<< HEAD
+=======
+.toggle-button1 {
+  background-color: #ccc;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin: 0 5px;
+  width: 100%;
+}
+
+.toggle-button1.active {
+  background-color: #6ab04c;
+  color: white;
+}
+
+.toggle-button1:hover {
+  background-color: #3b945e;
+}
+
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 .accident-list {
   display: flex;
   flex-direction: column;
@@ -64,6 +94,7 @@ h2 {
   padding: 15px 20px;
   border-radius: 5px;
   color: rgb(19, 18, 18);
+<<<<<<< HEAD
 }
 
 .approved {
@@ -72,19 +103,97 @@ h2 {
 
 .line-manager {
   background-color: rgb(230, 111, 111);
+=======
+  background-color: white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.accident-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.approved {
+  background-color: white !important; /* Force white background */
+}
+
+.line-manager {
+  background-color: white !important; /* Force white background */
+}
+
+.accident-info {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.accident-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.accident-details {
+  display: flex;
+  flex-direction: column;
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 }
 
 .accident-title {
   font-size: 18px;
+<<<<<<< HEAD
+=======
+  font-weight: bold;
+}
+
+.accident-location-department {
+  font-size: 14px;
+  color: #555;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  white-space: nowrap;
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 }
 
 .accident-status {
   display: flex;
+<<<<<<< HEAD
   align-items: center;
   gap: 10px;
   font-size: 14px;
 }
 
+=======
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 5px;
+  font-size: 14px;
+}
+
+.status-text {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.additional-info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: #444 !important;
+}
+
+.check-item {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
 .status-dot {
   width: 10px;
   height: 10px;
@@ -92,9 +201,95 @@ h2 {
 }
 
 .status-dot.approved {
+<<<<<<< HEAD
   background-color: rgb(0, 255, 0);
 }
 
 .status-dot.line-manager {
   background-color: rgb(248, 5, 5);
 }
+=======
+  background-color: rgb(0, 200, 0) !important;
+}
+
+.status-dot.line-manager {
+  background-color: rgb(200, 0, 0) !important;
+}
+
+.loader {
+  font-size: 18px;
+  color: #333;
+  text-align: center;
+  margin-top: 20px;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.popup-card {
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 90%;
+  width: 100%;
+  position: relative;
+  overflow-y: auto;
+  max-height: 90%;
+}
+
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: #333;
+}
+
+.popup-details {
+  margin-top: 20px;
+}
+
+.attachments-section {
+  margin-top: 20px;
+}
+
+.attachments-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.attachment-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.filter-section {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.filter-section input[type="text"],
+.filter-section input[type="date"] {
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+}
+>>>>>>> 71bcfcc6365ad64a29b13ed74f2a8b0137cf16ac
